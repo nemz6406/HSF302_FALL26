@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="812bbecd-e575-45f3-a614-a0fa6cac40af" name="Changes" comment="">
+    <list default="true" id="32e88f55-5ec6-4bcc-b747-8aad0904b2f5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Slot2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Slot3/Chapter1_JPA_MappingOneToMany/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Slot3/Chapter1_JPA_MappingOneToMany/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +33,7 @@
   "customColor": "",
   "associatedIndex": 8
 }]]></component>
-  <component name="ProjectId" id="3JMyTfJiBzu5NUi4h4yR4nqAU4J" />
+  <component name="ProjectId" id="3JN11SnXqRQI8aG7mdK3pIhi1DM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,11 +56,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="812bbecd-e575-45f3-a614-a0fa6cac40af" name="Changes" comment="" />
-      <created>1789485240870</created>
+      <changelist id="32e88f55-5ec6-4bcc-b747-8aad0904b2f5" name="Changes" comment="" />
+      <created>1789486497237</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1789485240870</updated>
+      <updated>1789486497237</updated>
     </task>
     <servers />
   </component>
