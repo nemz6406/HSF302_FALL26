@@ -1,9 +1,11 @@
 package fu.de200319.dao;
 
 import fu.de200319.pojo.Employee;
+import fu.de200319.pojo.Gender;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class EmployeeDAO {
@@ -87,6 +89,34 @@ public class EmployeeDAO {
         EntityManager em = emf.createEntityManager();
         try {
             return em.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    // ==========================================
+    // TODO 6: Bổ sung phương thức tìm kiếm nâng cao (Theo tên hoặc Giới tính)
+    // ==========================================
+
+    public List<Employee> findByFullName(String nameKeyword) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            String jpql = "SELECT e FROM Employee e WHERE e.fullName LIKE :name";
+            TypedQuery<Employee> query = em.createQuery(jpql, Employee.class);
+            query.setParameter("name", "%" + nameKeyword + "%");
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Employee> findByGender(Gender gender) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            String jpql = "SELECT e FROM Employee e WHERE e.gender = :gender";
+            TypedQuery<Employee> query = em.createQuery(jpql, Employee.class);
+            query.setParameter("gender", gender);
+            return query.getResultList();
         } finally {
             em.close();
         }
