@@ -4,6 +4,7 @@ import fu.de200319.pojo.Employee;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.util.List;
 
 public class EmployeeDAO {
 
@@ -11,7 +12,7 @@ public class EmployeeDAO {
             Persistence.createEntityManagerFactory("hsf302FU");
 
     // ==========================================
-    // TODO 1 & 2: Xây dựng các phương thức cơ bản (Create, Read)
+    // TODO 1 & 2: Xây dựng các phương thức cơ bản (Create, Read theo ID)
     // ==========================================
 
     public void save(Employee employee) {
@@ -73,6 +74,19 @@ public class EmployeeDAO {
                 em.getTransaction().rollback();
             }
             throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+    // ==========================================
+    // TODO 4: Viết phương thức lấy danh sách toàn bộ nhân viên (findAll)
+    // ==========================================
+
+    public List<Employee> findAll() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
         } finally {
             em.close();
         }
