@@ -18,8 +18,6 @@ public class Main {
         System.out.println("=== 1. TEST CREATE (Thêm mới nhân viên) ===");
         Employee emp = new Employee("Nguyen Van A", "a@fpt.edu.vn",
                 new BigDecimal("15000000"), Gender.MALE, LocalDate.of(2022, 3, 1));
-        // Lưu ý: Nếu database dùng chung chung với Slot 3 và bắt buộc department_id,
-        // bạn có thể cần set thêm department nếu phát sinh lỗi constraint.
         try {
             dao.save(emp);
             System.out.println(">>> Đã lưu thành công Employee ID: " + emp.getId());
@@ -45,6 +43,23 @@ public class Main {
         List<Employee> list = dao.findAll();
         System.out.println(">>> Tổng số nhân viên trong DB: " + list.size());
         for (Employee e : list) {
+            System.out.println(e);
+        }
+
+        // ==========================================
+        // TODO 7: Kiểm thử các phương thức tìm kiếm nâng cao (findByFullName, findByGender)
+        // ==========================================
+        System.out.println("\n=== 6. TEST FIND BY FULL NAME (Tìm kiếm theo tên) ===");
+        List<Employee> searchByName = dao.findByFullName("Nguyen");
+        System.out.println(">>> Số lượng tìm thấy theo từ khóa 'Nguyen': " + searchByName.size());
+        for (Employee e : searchByName) {
+            System.out.println(e);
+        }
+
+        System.out.println("\n=== 7. TEST FIND BY GENDER (Tìm kiếm theo giới tính) ===");
+        List<Employee> searchByGender = dao.findByGender(Gender.MALE);
+        System.out.println(">>> Số lượng nhân viên giới tính MALE: " + searchByGender.size());
+        for (Employee e : searchByGender) {
             System.out.println(e);
         }
 
