@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a70ff584-0277-426e-97dc-3413e569f8ca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../Slot2/Chapter1-JPA-Ex1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fu/de200319/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fu/de200319/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
