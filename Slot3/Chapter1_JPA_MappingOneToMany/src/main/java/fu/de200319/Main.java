@@ -13,12 +13,15 @@ public class Main {
     public static void main(String[] args) {
         DepartmentDAO departmentDAO = new DepartmentDAO();
 
-        // 1) Tạo Department + Employee và dùng helper method addEmployee
-        Department it = new Department("IT Department", "Ha Noi");
+        // Tạo tên phòng ban và email kèm timestamp để tránh trùng lặp khi chạy lại nhiều lần
+        String uniqueSuffix = String.valueOf(System.currentTimeMillis());
 
-        Employee e1 = new Employee("aa.nguyen@company.com", "Nguyen Van A", Gender.MALE,
+        // 1) Tạo Department + Employee và dùng helper method addEmployee (TODO 2.4)
+        Department it = new Department("HR Department " + uniqueSuffix, "Da Nang");
+
+        Employee e1 = new Employee("aa.nguyen." + uniqueSuffix + "@company.com", "Nguyen Van A", Gender.MALE,
                 new BigDecimal("15000000"), LocalDate.of(2022, 1, 10));
-        Employee e2 = new Employee("bb.tran@company.com", "Tran Thi B", Gender.FEMALE,
+        Employee e2 = new Employee("bb.tran." + uniqueSuffix + "@company.com", "Tran Thi B", Gender.FEMALE,
                 new BigDecimal("18000000"), LocalDate.of(2021, 6, 1));
 
         it.addEmployee(e1);
