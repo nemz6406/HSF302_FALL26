@@ -12,30 +12,27 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         DepartmentDAO departmentDAO = new DepartmentDAO();
-
-        // Tạo tên phòng ban và email kèm timestamp để tránh trùng lặp khi chạy lại nhiều lần
         String uniqueSuffix = String.valueOf(System.currentTimeMillis());
 
-        // 1) Tạo Department + Employee và dùng helper method addEmployee (TODO 2.4)
-        Department it = new Department("HR Department " + uniqueSuffix, "Da Nang");
+        // 1. Tạo phòng ban và nhân viên
+        Department dept = new Department("Cascade Test " + uniqueSuffix, "Da Nang");
+        Employee emp = new Employee("cascade." + uniqueSuffix + "@company.com", "Test Cascade", Gender.MALE,
+                new BigDecimal("20000000"), LocalDate.now());
 
-        Employee e1 = new Employee("aa.nguyen." + uniqueSuffix + "@company.com", "Nguyen Van A", Gender.MALE,
-                new BigDecimal("15000000"), LocalDate.of(2022, 1, 10));
-        Employee e2 = new Employee("bb.tran." + uniqueSuffix + "@company.com", "Tran Thi B", Gender.FEMALE,
-                new BigDecimal("18000000"), LocalDate.of(2021, 6, 1));
+        // Dùng helper method addEmployee để đồng bộ 2 chiều
+        dept.addEmployee(emp);
 
-        it.addEmployee(e1);
-        it.addEmployee(e2);
+        // 2. CHỈ gọi save Department - KHÔNG gọi employeeDAO.save()
+        // Nhờ cascade = ALL, Employee sẽ tự động được lưu theo Department (TODO 2.7)
+        departmentDAO.save(dept);
+        System.out.println("Đã lưu thành công Department với ID: " + dept.getId());
 
-        // 2) Lưu Department xuống DB (Cascade = ALL sẽ tự lưu luôn Employee) (TODO 2.7)
-        departmentDAO.save(it);
-        System.out.println("Da luu Department thanh cong, id = " + it.getId());
+        // 3. Kiểm tra lại bằng cách query xem employee đã có trong DB chưa
+        Department found = departmentDAO.findByIdWithEmployees(dept.getId());
+        System.out.println("Số lượng nhân viên được cascade lưu tự động: " + found.getEmployees().size());
 
-        // 3) Tìm lại kèm employees bằng JOIN FETCH (TODO 2.6)
-        Department found = departmentDAO.findByIdWithEmployees(it.getId());
-        System.out.println("Phong ban vua tim thay: " + found.getName());
-        for (Employee e : found.getEmployees()) {
-            System.out.println("  - " + e.getFullName() + " (" + e.getEmail() + ")");
+        if (!found.getEmployees().isEmpty()) {
+            System.out.println("-> Kiểm tra CASCADE thành công! Nhân viên: " + found.getEmployees().get(0).getFullName());
         }
 
         JPAUtil.close();
