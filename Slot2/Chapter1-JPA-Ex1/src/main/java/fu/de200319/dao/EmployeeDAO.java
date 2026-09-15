@@ -131,11 +131,21 @@ public class EmployeeDAO {
         try {
             String jpql = "SELECT e FROM Employee e";
             TypedQuery<Employee> query = em.createQuery(jpql, Employee.class);
-            query.setFirstResult((pageNumber - 1) * pageSize); // Vị trí bắt đầu lấy
-            query.setMaxResults(pageSize);                    // Số lượng bản ghi mỗi trang
+            query.setFirstResult((pageNumber - 1) * pageSize);
+            query.setMaxResults(pageSize);
             return query.getResultList();
         } finally {
             em.close();
+        }
+    }
+
+    // ==========================================
+    // TODO 10: Đóng EntityManagerFactory khi kết thúc chương trình
+    // ==========================================
+
+    public static void closeFactory() {
+        if (emf != null && emf.isOpen()) {
+            emf.close();
         }
     }
 }

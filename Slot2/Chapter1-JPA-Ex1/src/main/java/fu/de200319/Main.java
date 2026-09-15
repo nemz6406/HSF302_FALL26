@@ -12,9 +12,6 @@ public class Main {
     public static void main(String[] args) {
         EmployeeDAO dao = new EmployeeDAO();
 
-        // ==========================================
-        // TODO 5: Viết chương trình Main kiểm thử toàn diện các chức năng (CRUD)
-        // ==========================================
         System.out.println("=== 1. TEST CREATE (Thêm mới nhân viên) ===");
         Employee emp = new Employee("Nguyen Van A", "a@fpt.edu.vn",
                 new BigDecimal("15000000"), Gender.MALE, LocalDate.of(2022, 3, 1));
@@ -46,9 +43,6 @@ public class Main {
             System.out.println(e);
         }
 
-        // ==========================================
-        // TODO 7: Kiểm thử các phương thức tìm kiếm nâng cao
-        // ==========================================
         System.out.println("\n=== 6. TEST FIND BY FULL NAME (Tìm kiếm theo tên) ===");
         List<Employee> searchByName = dao.findByFullName("Nguyen");
         System.out.println(">>> Số lượng tìm thấy theo từ khóa 'Nguyen': " + searchByName.size());
@@ -63,9 +57,6 @@ public class Main {
             System.out.println(e);
         }
 
-        // ==========================================
-        // TODO 9: Kiểm thử phương thức phân trang (Pagination)
-        // ==========================================
         System.out.println("\n=== 8. TEST PAGINATION (Phân trang: Trang 1, Kích thước 5) ===");
         List<Employee> pagedList = dao.findWithPagination(1, 5);
         System.out.println(">>> Số lượng nhân viên ở trang 1: " + pagedList.size());
@@ -79,5 +70,11 @@ public class Main {
             Employee deletedEmp = dao.findById(emp.getId());
             System.out.println(">>> Kiểm tra sau khi xóa (phải là null): " + deletedEmp);
         }
+
+        // ==========================================
+        // TODO 10: Đóng tài nguyên kết nối
+        // ==========================================
+        EmployeeDAO.closeFactory();
+        System.out.println("\n=== ĐÃ HOÀN TẤT TOÀN BỘ CÁC TODO CỦA SLOT 2 ===");
     }
 }
