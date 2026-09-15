@@ -1,17 +1,24 @@
 package fu.de200319;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import fu.de200319.dao.EmployeeDAO;
+import fu.de200319.pojo.Employee;
+import fu.de200319.pojo.Gender;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        EmployeeDAO dao = new EmployeeDAO();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Tạo một nhân viên mới để test
+        Employee emp = new Employee("Nguyen Van A", "a@fpt.edu.vn",
+                new BigDecimal("15000000"), Gender.MALE, LocalDate.of(2022, 3, 1));
+
+        dao.save(emp);
+        System.out.println(">>> Đã lưu thành công Employee ID: " + emp.getId());
+
+        Employee found = dao.findById(emp.getId());
+        System.out.println(">>> Tìm thấy trong DB: " + found);
     }
 }
