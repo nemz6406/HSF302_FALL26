@@ -47,7 +47,7 @@ public class Main {
         }
 
         // ==========================================
-        // TODO 7: Kiểm thử các phương thức tìm kiếm nâng cao (findByFullName, findByGender)
+        // TODO 7: Kiểm thử các phương thức tìm kiếm nâng cao
         // ==========================================
         System.out.println("\n=== 6. TEST FIND BY FULL NAME (Tìm kiếm theo tên) ===");
         List<Employee> searchByName = dao.findByFullName("Nguyen");
@@ -60,6 +60,16 @@ public class Main {
         List<Employee> searchByGender = dao.findByGender(Gender.MALE);
         System.out.println(">>> Số lượng nhân viên giới tính MALE: " + searchByGender.size());
         for (Employee e : searchByGender) {
+            System.out.println(e);
+        }
+
+        // ==========================================
+        // TODO 9: Kiểm thử phương thức phân trang (Pagination)
+        // ==========================================
+        System.out.println("\n=== 8. TEST PAGINATION (Phân trang: Trang 1, Kích thước 5) ===");
+        List<Employee> pagedList = dao.findWithPagination(1, 5);
+        System.out.println(">>> Số lượng nhân viên ở trang 1: " + pagedList.size());
+        for (Employee e : pagedList) {
             System.out.println(e);
         }
 
