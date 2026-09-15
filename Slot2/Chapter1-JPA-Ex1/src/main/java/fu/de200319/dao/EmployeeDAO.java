@@ -121,4 +121,21 @@ public class EmployeeDAO {
             em.close();
         }
     }
+
+    // ==========================================
+    // TODO 8: Bổ sung phương thức phân trang (Pagination)
+    // ==========================================
+
+    public List<Employee> findWithPagination(int pageNumber, int pageSize) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            String jpql = "SELECT e FROM Employee e";
+            TypedQuery<Employee> query = em.createQuery(jpql, Employee.class);
+            query.setFirstResult((pageNumber - 1) * pageSize); // Vị trí bắt đầu lấy
+            query.setMaxResults(pageSize);                    // Số lượng bản ghi mỗi trang
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }
