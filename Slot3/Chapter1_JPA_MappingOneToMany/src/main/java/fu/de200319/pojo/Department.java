@@ -17,7 +17,7 @@ public class Department {
 
     private String location;
 
-    // --- BỔ SUNG CHO TODO 2 & 3 & 4 (Inverse side & Helper method) ---
+    // --- TODO 2.3: Inverse side trong Department ---
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
 
@@ -27,17 +27,6 @@ public class Department {
     public Department(String name, String location) {
         this.name = name;
         this.location = location;
-    }
-
-    // Helper method đồng bộ 2 chiều (TODO 2.4)
-    public void addEmployee(Employee e) {
-        this.employees.add(e);
-        e.setDepartment(this);
-    }
-
-    public void removeEmployee(Employee e) {
-        this.employees.remove(e);
-        e.setDepartment(null);
     }
 
     // Getters and Setters
